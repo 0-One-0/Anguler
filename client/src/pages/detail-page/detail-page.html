@@ -1,9 +1,13 @@
 
 
-<div class="flex flex-col w-full border-box items-center">
-  @if (product) {
-    <app-product-detail [product]="product" />
+<div class="flex flex-col w-full border-box items-center lg:items-start">
+  @if (product(); as p) {
+    <app-product-detail [product]="p" />
   } @else {
     <p>Product not found.</p>
   }
+</div>
+
+<div class="hidden md:flex md:flex-col md:items-center border-box md:w-full md:min-w-0 m-0 p-0 lg:w-full lg:flex">
+  <app-similar-products [slug]="slug()"/>
 </div>

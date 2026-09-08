@@ -103,9 +103,9 @@ export class ProductsService {
     return this.products().find((p: { slug: string }) => p.slug === slug);
   }
 
-  getRandom() {
-    const all = this.products();
-    const randomIndex = Math.floor(Math.random() * all.length);
-    return all[randomIndex];
+  getRandom(count: number, excludeSlug: string): Product[] {
+    const others = this.products().filter((p) => p.slug !== excludeSlug);
+    const shuffled = [...others].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
   }
 }

@@ -1,20 +1,23 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products-service';
 import { ProductDetail } from "../../components/product-detail/product-detail";
+import { SimilarProducts } from "../../components/similar-products/similar-products";
 
 @Component({
   selector: 'app-detail-page',
-  imports: [ProductDetail],
+  imports: [ProductDetail, SimilarProducts],
   templateUrl: './detail-page.html',
   styleUrl: './detail-page.css',
 })
 export class DetailPage {
-  private route = inject(ActivatedRoute);
+  
   private productsService = inject(ProductsService);
 
-  slug = this.route.snapshot.paramMap.get('slug') ?? '';
-  product = this.productsService.getBySlug(this.slug);
+  
+
+  slug = input.required<string>();
+  product = computed(() => this.productsService.getBySlug(this.slug()))
   
   
   

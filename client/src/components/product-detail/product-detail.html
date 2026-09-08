@@ -1,14 +1,17 @@
-<div class="w-100 gap-4  flex flex-col items-center border-box p-3">
-  <img [src]="product().imageUrl" class="w-100" alt="">
-  <div class=" flex flex-col gap-2">
-    <p class="text-3xl font-semibold">{{ product().name }}</p>
-    <p class="text-gray-400">{{ product().brand }}</p>
-    <p>{{ product().description }}</p>
+<div class="w-100 gap-4  flex flex-col items-center border-box p-3 md:flex-row md:justify-start md:items-start md:w-full">
+  <img [src]="product().imageUrl" class="w-100 lg:w-150" alt="">
+  <div class="md:flex md:flex-col md:gap-15">
+  <div class=" flex flex-col gap-3  md:gap-4 ">
+    <p class="text-3xl font-semibold lg:text-7xl">{{ product().name }}</p>
+    <p class="text-gray-400 lg:text-2xl ">{{ product().brand }}</p>
+    <p class="max-w-100 lg:text-2xl">{{ product().description }}</p>
+    <div class="felx flex-col items-start w-full ">
+    <p class="lg:text-2xl">{{ product().price }}$</p>
+    </div>
   </div>
-  <div class="felx flex-col items-start w-full">
-    <p>{{ product().price }} $</p>
-    
+  
+    <button class="bg-amber-100 p-2 w-50 lg:w-90 border border-black rounded-2xl" >Add to cart</button>
   </div>
-  <button class="bg-amber-100 p-2 w-50 border border-black rounded-2xl" >Add to cart</button>
+  
 </div>
 

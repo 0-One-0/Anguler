@@ -10,4 +10,5 @@ import { Product } from '../../services/products-service';
 export class ProductDetail {
   
   product = input.required<Product>();
+  
 }
