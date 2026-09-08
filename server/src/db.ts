@@ -12,6 +12,7 @@ db.exec(`
     image_url TEXT NOT NULL,
     description TEXT NOT NULL,
     brand TEXT NOT NULL,
+    publish_date TEXT NOT NULL
   )
 `);
 

@@ -1,0 +1,9 @@
+
+
+<div class="flex flex-col w-full border-box items-center">
+  @if (product) {
+    <app-product-detail [product]="product" />
+  } @else {
+    <p>Product not found.</p>
+  }
+</div>
