@@ -20,12 +20,13 @@
 <div class="flex flex-col max-w-full border-box w-full items-center gap-4 p-4 md:grid grid-cols-2 md:max-w-200 md:px-0 lg:grid-cols-4 lg:max-w-265  ">
   @for (product of Products(); track product.slug) {
     <app-preview-product
-      [News]="product.news"
+      /* [publishDate]="product.publishDate"
       [name]="product.name"
       [brand]="product.brand"
       [price]="product.price"
       [imageUrl]="product.imageUrl"
-      [slug]="product.slug"
+      [slug]="product.slug" */
+      [product] = "product"
     />
   }
 </div>

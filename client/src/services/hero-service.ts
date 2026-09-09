@@ -11,7 +11,7 @@ export class HeroService {
   private readonly heroitems = signal<HeroItem[]>([
     {
       slug: 'hero-1',
-      imageUrl: 'assets/hero1.jpg',
+      imageUrl: 'assets/hero/hero1.jpg',
       title: 'Everyday Style, Redefined',
       description:
         'Everyday fashion for every season — curated pieces that keep you looking sharp, no matter where the day takes you.',
