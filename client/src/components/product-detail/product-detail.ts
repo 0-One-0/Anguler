@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Product } from '../../services/products-service';
+import { BasketServices } from '../../services/basket-services';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,6 +10,13 @@ import { Product } from '../../services/products-service';
 })
 export class ProductDetail {
   
+  private basketService = inject(BasketServices);
   product = input.required<Product>();
-  
+
+
+  addToBasket(slug: string){
+    this.basketService.add(slug);
+    
+    return;
+  }
 }
