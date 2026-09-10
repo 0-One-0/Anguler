@@ -1,7 +1,10 @@
 import { Service, signal } from '@angular/core';
+import { Product } from './products-service';
 
 export interface BasketItem {
   slug: string;
+  name: string;
+  price: number;
   quantity: number;
 }
 
@@ -23,12 +26,19 @@ export class BasketServices {
     this.save(updated);
   }
 
-  add(slug: string) {
-    const existing = this.items().find((i) => i.slug === slug);
+  add(product: Product) {
+    const existing = this.items().find((i) => i.slug === product.slug);
     if (existing) {
-      this.updateQuantity(slug, existing.quantity + 1);
+      this.updateQuantity(product.slug, existing.quantity + 1);
     } else {
-      this.save([...this.items(), { slug, quantity: 1 }]);
+      this.save([
+        ...this.items(),
+        { slug: product.slug, name: product.name, price: product.price, quantity: 1 },
+      ]);
     }
   }
+  remove(slug: string) {
+  const updated = this.items().filter((item) => item.slug !== slug);
+  this.save(updated);
+}
 }

@@ -1,8 +1,19 @@
-<p>basket works!</p>
 
+<div class="flex flex-col gap-1">
 @for(item of items(); track item.slug){
-  <div>
-    <p>1</p>
-    <p>1</p>
+  <div class="flex border w-70 border-box p-1">
+     <div>
+      <p>{{ item.name }}</p>
+      <p>{{ item.price }}</p>
+    </div>
+    <div class="ml-auto">
+      <p>{{ item.price * item.quantity}}</p>
+      <div class="flex gap-2">
+        <div>{{ item.quantity}}</div>
+        <button (click)="deleteItem(item.slug)">X</button>
+      </div>
+    </div>
+    
   </div>
 }
+</div>

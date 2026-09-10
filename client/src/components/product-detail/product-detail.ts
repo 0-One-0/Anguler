@@ -14,9 +14,7 @@ export class ProductDetail {
   product = input.required<Product>();
 
 
-  addToBasket(slug: string){
-    this.basketService.add(slug);
-    
-    return;
+  addToBasket() {
+    this.basketService.add(this.product());
   }
 }
