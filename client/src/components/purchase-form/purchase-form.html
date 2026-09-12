@@ -1,0 +1,58 @@
+<form class="flex flex-col gap-4 w-[100%] md:w-[100%] box-border ">
+  <h2 class="text-xl font-bold text-center">Customer details</h2>
+
+  <div class="flex flex-col gap-4 md:flex-row max-w-[810px]">
+    <div class="flex flex-col gap-1 md:w-1/2">
+      <label for="firstname">First name</label>
+      <input
+        id="firstname"
+        name="firstname"
+        type="text"
+        class="border border-black box-border h-8 px-2"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1 md:w-1/2">
+      <label for="lastname">Last name</label>
+      <input
+        id="lastname"
+        name="lastname"
+        type="text"
+        class="border border-black box-border h-8 px-2"
+      />
+    </div>
+  </div>
+  <div class="flex flex-col gap-1 max-w-[810px]">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" class="border border-black box-border h-8 px-2" />
+  </div>
+
+  <fieldset class="border border-black box-border flex flex-col gap-4 p-4">
+    <legend class="px-2">Address</legend>
+
+    <div class="flex flex-col gap-1">
+      <label for="street">Street</label>
+      <input
+        id="street"
+        name="street"
+        type="text"
+        class="border border-black box-border h-8 px-2"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1 w-1/2">
+      <label for="zip">Postal code</label>
+      <input id="zip" name="zip" type="text" class="border border-black box-border h-8 px-2" />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="city">City</label>
+      <input id="city" name="city" type="text" class="border border-black box-border h-8 px-2" />
+    </div>
+  </fieldset>
+
+  <label class="flex items-center gap-2">
+    <input type="checkbox" name="newsletter" class="border border-black box-border" />
+    I want to receive the newsletter
+  </label>
+</form>

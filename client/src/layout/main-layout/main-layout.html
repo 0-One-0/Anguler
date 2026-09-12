@@ -1,15 +1,15 @@
-<nav class="flex flex-col mb-10 p-4">
-  <div class="flex flex-col border-box gap-3 mb-1 md:flex-row md:items-end md:mb-5">
+<nav class="flex flex-col mb-10 p-4 box-border">
+  <div class="flex flex-col box-border gap-3 mb-1 md:flex-row md:items-end md:mb-5">
   <div class="border flex align-middle justify-center rounded" routerLink="/">
-    <img class="max-w-full border-box md:max-w-70" src="assets/logo/logo.png" alt="" />
+    <img class="max-w-full box-border md:max-w-70" src="assets/logo/logo.png" alt="" />
   </div>
 
-  <div class="flex border-box gap-2 md:gap-10 items-end py-10 w-full p-4">
+  <div class="flex box-border gap-2 md:gap-10 items-end py-10 w-full p-4">
     <input
       type="text"
       name="searchbar"
       id=""
-      class="w-90 p-3 border-box h-8 bg-amber-50 rounded-2xl border-black border"
+      class="w-90 p-3 box-border h-8 bg-amber-50 rounded-2xl border-black border"
     />
     <div class="flex gap-2 md:ml-auto">
       <svg
@@ -47,9 +47,9 @@
   </ul>
 </nav>
 
-<main class="flex flex-col items-center min-w-0 border-box md:mb-30"><router-outlet /></main>
+<main class="flex flex-col items-center min-w-full box-border md:mb-30"><router-outlet /></main>
 
-<footer class="mt-8 border-t border-slate-200 bg-slate-50 text-slate-700">
+<footer class="mt-8 border-t box-border border-slate-200 bg-slate-50 text-slate-700">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-6 py-8">
     <div class="flex items-center gap-3">
       <svg

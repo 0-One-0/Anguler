@@ -6,6 +6,8 @@ import { CartPage } from '../pages/cart-page/cart-page';
 import { AdminPage } from '../pages/admin-page/admin-page';
 import { MainLayout } from '../layout/main-layout/main-layout';
 import { CheckoutPage } from '../pages/checkout-page/checkout-page';
+import { AdminLayout } from '../layout/admin-layout/admin-layout';
+import { AddProduct } from '../components/add-product/add-product';
 
 export const routes: Routes = [
   {
@@ -19,5 +21,9 @@ export const routes: Routes = [
       { path: 'checkout', component: CheckoutPage },
     ],
   },
-  { path: 'admin', component: AdminPage },
+  { path: 'admin', component: AdminLayout,
+    children: [
+      { path: 'products', component: AdminPage },
+      { path: 'products/new', component: AddProduct },
+    ],}
 ];

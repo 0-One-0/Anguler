@@ -1,7 +1,8 @@
 <div class="flex flex-col items-center max-w-screen gap-10">
   <p class="text-3xl font-bold">Checkout</p>
-  <app-basket />
-
+  <div class="flex flex-col w-[90dvw] gap-20">
+    <app-basket />
+    <app-purchase-form />
+  </div>
   <button [routerLink]="'/'">Buy</button>
 </div>
-

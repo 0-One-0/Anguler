@@ -1,0 +1,73 @@
+<div class="w-[50rem] overflow-y-scroll h-[100dvh]">
+<form class="flex flex-col gap-4 w-full max-w-md p-6 box-border">
+  <h2 class="text-2xl font-bold">New Product</h2>
+
+  <div class="flex flex-col gap-1">
+    <label for="name" class="font-semibold">Name</label>
+    <input
+      id="name"
+      type="text"
+      name="name"
+      placeholder="Enter name"
+      maxlength="25"
+      required
+      class="border p-1.5 rounded"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="description" class="font-semibold">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      placeholder="Enter description"
+      rows="5"
+      required
+      class="border p-1.5 rounded resize-none"
+    ></textarea>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="imageUrl" class="font-semibold">Image</label>
+    <input
+      id="imageUrl"
+      type="url"
+      name="imageUrl"
+      placeholder="Enter URL"
+      required
+      class="border p-1.5 rounded"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="brand" class="font-semibold">Brand</label>
+    <input id="brand" type="text" name="brand" required class="border p-1.5 rounded" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="sku" class="font-semibold">SKU</label>
+    <input
+      id="sku"
+      type="text"
+      name="sku"
+      placeholder="Enter SKU"
+      pattern="[A-Z]{3}[0-9]{3}"
+      title="Format should be three letters (A-Z) followed by three digits, e.g. ABC123"
+      required
+      class="border p-1.5 rounded"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="price" class="font-semibold">Price</label>
+    <input id="price" type="number" name="price" min="0" step="0.01" required class="border p-1.5 rounded" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="publishDate" class="font-semibold">Publish Date</label>
+    <input id="publishDate" type="date" name="publishDate" required class="border p-1.5 rounded" />
+  </div>
+
+  <button type="submit" class="border p-1.5 rounded self-start">Add</button>
+</form>
+</div>
