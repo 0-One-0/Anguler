@@ -6,9 +6,10 @@ const db = new Database("e-shop.db");
 db.exec(`
   CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    price INTEGER NOT NULL,
-    sku TEXT NOT NULL, 
+    name TEXT NOT NULL UNIQUE,
+    price REAL NOT NULL,
+    sku TEXT NOT NULL UNIQUE, 
+    slug TEXT NOT NULL UNIQUE, 
     image_url TEXT NOT NULL,
     description TEXT NOT NULL,
     brand TEXT NOT NULL,

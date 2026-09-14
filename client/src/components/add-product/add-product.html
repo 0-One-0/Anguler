@@ -1,5 +1,5 @@
-<div class="w-[50rem] overflow-y-scroll h-[100dvh]">
-<form class="flex flex-col gap-4 w-full max-w-md p-6 box-border">
+<div class="max-w-[90%] box-border w-[50rem] overflow-y-scroll h-[100dvh]">
+<!-- <form class="flex flex-col gap-4 w-full max-w-md p-6 box-border">
   <h2 class="text-2xl font-bold">New Product</h2>
 
   <div class="flex flex-col gap-1">
@@ -69,5 +69,85 @@
   </div>
 
   <button type="submit" class="border p-1.5 rounded self-start">Add</button>
+</form> -->
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full max-w-md p-6 box-border">
+  <div class="flex flex-col gap-1">
+    <label for="name" class="font-semibold">Name</label>
+    <input id="name" formControlName="name" class="border p-1.5 rounded" />
+    @if (productForm.controls.name.invalid && productForm.controls.name.touched) {
+      <span class="text-red-600 text-sm">Name is required (max 25 chars).</span>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="description" class="font-semibold">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      rows="5"
+      class="border p-1.5 rounded resize-none"
+    ></textarea>
+    @if (productForm.controls.description.invalid && productForm.controls.description.touched) {
+      <span class="text-red-600 text-sm">Description is required.</span>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="imageUrl" class="font-semibold">Image</label>
+    <input id="imageUrl" type="url" formControlName="imageUrl" class="border p-1.5 rounded" />
+    @if (productForm.controls.imageUrl.invalid && productForm.controls.imageUrl.touched) {
+      <span class="text-red-600 text-sm">Image URL is required.</span>
+    }
+  </div>
+  <div>
+    <p>Image Preview:</p>
+<img class="w-30" [src]="productForm.value.imageUrl" alt="">
+<p>Make sure the image shows before adding</p>
+  </div>
+  
+
+  <div class="flex flex-col gap-1">
+    <label for="brand" class="font-semibold">Brand</label>
+    <input id="brand" formControlName="brand" class="border p-1.5 rounded" />
+    @if (productForm.controls.brand.invalid && productForm.controls.brand.touched) {
+      <span class="text-red-600 text-sm">Brand is required.</span>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="sku" class="font-semibold">SKU</label>
+    <input id="sku" formControlName="sku" class="border p-1.5 rounded" />
+    @if (productForm.controls.sku.invalid && productForm.controls.sku.touched) {
+      @if (productForm.controls.sku.hasError('required')) {
+        <span class="text-red-600 text-sm">SKU is required.</span>
+      } @else if (productForm.controls.sku.hasError('pattern')) {
+        <span class="text-red-600 text-sm">Format: three letters + three digits (e.g. ABC123).</span>
+      }
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="price" class="font-semibold">Price</label>
+    <input id="price" type="number" step="0.01" formControlName="price" class="border p-1.5 rounded" />
+    @if (productForm.controls.price.invalid && productForm.controls.price.touched) {
+      @if (productForm.controls.price.hasError('required')) {
+        <span class="text-red-600 text-sm">Price is required.</span>
+      } @else if (productForm.controls.price.hasError('min')) {
+        <span class="text-red-600 text-sm">Price can't be negative.</span>
+      }
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="publishDate" class="font-semibold">Publish Date</label>
+    <input id="publishDate" type="date" formControlName="publishDate" class="border p-1.5 rounded" />
+    @if (productForm.controls.publishDate.invalid && productForm.controls.publishDate.touched) {
+      <span class="text-red-600 text-sm">Publish date is required.</span>
+    }
+  </div>
+
+  <button type="submit" class="border p-1.5 rounded self-start">Add</button>
 </form>
+
+
 </div>

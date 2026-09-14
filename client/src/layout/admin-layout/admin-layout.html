@@ -1,13 +1,13 @@
 <nav class="w-[100%] h-[10vh] box-border bg-black px-8 items-center flex">
   <p class="text-white font-bold text-5xl">Admin</p>
 </nav>
-<main class="flex flex-col items-center h-[100vh] min-w-full box-border">
+<main class="flex flex-col items-center h-[100vh] min-w-[90%] box-border">
   <div class="flex items-center h-full w-full">
     <div class="flex w-[20%] h-full justify-center max-w-[208px] border">
       <ul>
         <li [routerLink]="'/admin/products'">Products</li>
       </ul>
     </div>
-    <div class="flex w-[80%] h-full items-start justify-center"><router-outlet /></div>
+    <div class="flex box-border pl-10 max-w-[80%] w-[80%] h-full items-start justify-start"><router-outlet /></div>
   </div>
 </main>
