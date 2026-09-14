@@ -1,4 +1,5 @@
-import { Service, signal } from '@angular/core';
+import { HttpClient, httpResource } from '@angular/common/http';
+import { inject, Service, signal } from '@angular/core';
 
 export interface Product {
   sku: string;
@@ -213,19 +214,25 @@ export class ProductsService {
         'A ribbed jersey cami with adjustable straps, made to layer under jackets or wear alone in warmer weather.',
     },
   ]);
-
-  getAll() {
-    return this.products.asReadonly();
+  private http = inject(HttpClient);
+  getAll(limit: number) {
+    return httpResource<Product[]>(() => `/api/products?limit=${limit}`);
   }
 
-  getBySlug(slug: string) {
-    return this.products().find((p: { slug: string }) => p.slug === slug);
+  getAllAdmin() {
+    return httpResource<Product[]>(() => `/api/admin/products`);
   }
 
-  getRandom(count: number, excludeSlug: string): Product[] {
-    const others = this.products().filter((p) => p.slug !== excludeSlug);
-    const shuffled = [...others].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
+  getBySlug(slug: () => string) {
+    return httpResource<Product>(() => `/api/products/${slug()}`);
+  }
+
+  getRandom(excludeSlug: () => string) {
+    return httpResource<Product[]>(() => `/api/products/${excludeSlug()}/similar`);
+  }
+
+  addProduct(newProduct: Product) {
+    return this.http.post<Product>('/api/admin/products', newProduct);
   }
 
   newItem(publishDate: string): boolean {

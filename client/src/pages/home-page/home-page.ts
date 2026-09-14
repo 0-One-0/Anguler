@@ -12,7 +12,8 @@ import { HeroItem, HeroService } from '../../services/hero-service';
 export class HomePage {
  private productsService = inject(ProductsService);
  private heroService = inject(HeroService);
-  Products = this.productsService.getAll();
+ 
+  Products = this.productsService.getAll(8);
 
   hero = this.heroService.getAll();
 

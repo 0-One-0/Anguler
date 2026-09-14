@@ -1,34 +1,41 @@
-<div class="flex flex-col items-center max-w-screen border-box w-full px-5 gap-10 ">
-  
-  <div class="flex flex-col gap-5 bg-amber-50 items-center border-box border w-fit p-5 md:h-140 md:gap-15 lg:flex-row lg:items-start lg:h-100">
+<div class="flex flex-col items-center max-w-screen border-box w-full px-5 gap-10">
+  <div
+    class="flex flex-col gap-5 bg-amber-50 items-center border-box border w-fit p-5 md:h-140 md:gap-15 lg:flex-row lg:items-start lg:h-100"
+  >
     <div class="hidden flex-col gap-2 w-80 md:max-w-180 md:w-70 lg:flex">
       <p class="text-lg font-semibold md:text-3xl">{{ hero.title }}</p>
       <p class="md:text-xl">{{ hero.description }}</p>
     </div>
-  <div>
-
-    <img class="w-80 md:max-w-180 md:w-200 md:h-90 object-cover lg:h-85 " [src]="hero.imageUrl" alt="" />
-
+    <div>
+      <img
+        class="w-80 md:max-w-180 md:w-200 md:h-90 object-cover lg:h-85"
+        [src]="hero.imageUrl"
+        alt=""
+      />
+    </div>
+    <div class="flex flex-col gap-2 w-80 md:max-w-180 md:w-200 lg:hidden">
+      <p class="text-lg font-semibold md:text-3xl">{{ hero.title }}</p>
+      <p class="md:text-xl">{{ hero.description }}</p>
+    </div>
   </div>
-  <div class="flex flex-col gap-2 w-80 md:max-w-180 md:w-200 lg:hidden">
-    <p class="text-lg font-semibold md:text-3xl">{{ hero.title }}</p>
-    <p class="md:text-xl">{{ hero.description }}</p>
-  </div>
-  </div>
 
-
-<div class="flex flex-col max-w-screen border-box w-full items-center gap-4 p-4 md:grid grid-cols-2 md:max-w-200 md:px-0 lg:grid-cols-4 lg:max-w-265  ">
-  @for (product of Products(); track product.slug) {
-    <app-preview-product
-      /* [publishDate]="product.publishDate"
+  <div
+    class="flex flex-col max-w-screen border-box w-full items-center gap-4 p-4 md:grid grid-cols-2 md:max-w-200 md:px-0 lg:grid-cols-4 lg:max-w-265"
+  >
+    @if (Products.isLoading()) {
+      <p>Loading...</p>
+    } @else {
+      @for (product of Products.value(); track product.slug) {
+        <app-preview-product
+          /* [publishDate]="product.publishDate"
       [name]="product.name"
       [brand]="product.brand"
       [price]="product.price"
       [imageUrl]="product.imageUrl"
       [slug]="product.slug" */
-      [product] = "product"
-    />
-  }
-</div>
-
+          [product]="product"
+        />
+      }
+    }
+  </div>
 </div>

@@ -14,6 +14,6 @@ export class SimilarProducts {
 
   
 
-  products = computed(() => this.productsService.getRandom(6, this.slug()));
+  products = this.productsService.getRandom(this.slug);
   
 }

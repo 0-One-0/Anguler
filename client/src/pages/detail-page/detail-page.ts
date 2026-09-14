@@ -17,7 +17,7 @@ export class DetailPage {
   
 
   slug = input.required<string>();
-  product = computed(() => this.productsService.getBySlug(this.slug()))
+  product = this.productsService.getBySlug(this.slug);
   
   
   

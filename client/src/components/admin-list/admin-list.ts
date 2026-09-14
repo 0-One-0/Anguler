@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-list',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './admin-list.html',
   styleUrl: './admin-list.css',
 })
 export class AdminList {
   private productService = inject(ProductsService);
 
-  items = this.productService.getAll();
+  items = this.productService.getAllAdmin();
 }

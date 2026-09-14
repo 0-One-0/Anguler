@@ -12,7 +12,13 @@
     </tr>
   </thead >
    <tbody class="">
-    @for (item of items(); track item.slug){
+    @if(items.isLoading()){
+      <p>loading..</p>
+    } @else if(items.error()){
+      <p>no products found</p>
+
+    } @else{
+      @for (item of items.value(); track item.slug){
        <tr class="border">
       <td class="border w-80  py-4 text-start px-1">{{item.name}}</td>
       <td class="border w-30 text-start px-1">{{item.sku}}</td>
@@ -41,6 +47,8 @@
       </tr>
 
    }
+    }
+    
    </tbody>
    
 </table>
