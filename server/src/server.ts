@@ -3,7 +3,6 @@ import express from "express";
 import productsRouter from './routes/products.routes';
 import adminRouter from './routes/admin.routes';
 
-//const PORT = process.env.PORT | 8000;
 const PORT = 8000;
 
 // Skapa en instans av Express

@@ -1,5 +1,5 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, effect, inject, input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ProductsService } from '../../services/products-service';
 import { ProductDetail } from "../../components/product-detail/product-detail";
 import { SimilarProducts } from "../../components/similar-products/similar-products";
@@ -11,14 +11,23 @@ import { SimilarProducts } from "../../components/similar-products/similar-produ
   styleUrl: './detail-page.css',
 })
 export class DetailPage {
-  
-  private productsService = inject(ProductsService);
 
-  
+  private productsService = inject(ProductsService);
+  private titleService = inject(Title);
+
+
 
   slug = input.required<string>();
   product = this.productsService.getBySlug(this.slug);
-  
-  
-  
+
+  constructor() {
+    effect(() => {
+      const name = this.product.value()?.name;
+      if (name) {
+        this.titleService.setTitle(name);
+      }
+    });
+  }
+
+
 }

@@ -1,4 +1,25 @@
 
+ @if (pageNumbers()?.length > 1) {
+      <div class="flex w-full justify-center">
+        <div class="flex gap-2">
+          <button (click)="decrement()"><</button>
+          <div class="flex gap-2">
+            @for (num of pageNumbers(); track num) {
+              <div
+                class="flex border px-1 rounded cursor-default"
+                [class.bg-black]="num === page()"
+                [class.text-white]="num === page()"
+                (click)="setPage(num)"
+              >
+                {{ num }}
+              </div>
+            }
+          </div>
+
+          <button (click)="increment()">></button>
+        </div>
+      </div>
+    }
 <div class="block max-w-[1600px] w-[100%] box-border relative overflow-y-scroll max-h-[60dvh]  ">
 <table class="table w-[100%] text-start box-border border-separate border-spacing-0" border = "0" cellpadding="8" cellspacing="0">
  <thead>
@@ -12,13 +33,14 @@
     </tr>
   </thead >
    <tbody class="">
-    @if(items.isLoading()){
+    @if(results.isLoading()){
       <p>loading..</p>
-    } @else if(items.error()){
+    } @else if(results.error()){
       <p>no products found</p>
 
     } @else{
-      @for (item of items.value(); track item.slug){
+     
+      @for (item of results.value()?.products; track item.slug){
        <tr class="border">
       <td class="border w-80  py-4 text-start px-1">{{item.name}}</td>
       <td class="border w-30 text-start px-1">{{item.sku}}</td>
@@ -26,7 +48,7 @@
       <td class="border w-10">
         <div class="flex gap-2 justify-center items-center">
 
-          <button class="w-5 flex justify-center items-center border-box" >
+          <button class="w-5 flex justify-center items-center border-box" (click)="deleteProduct(item.slug)">
             <svg
               class="flex border-box w-5"
               xmlns="http://www.w3.org/2000/svg"

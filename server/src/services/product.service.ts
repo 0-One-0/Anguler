@@ -1,5 +1,4 @@
 import db from "../db";
-import { testData } from "../testData";
 
 export interface Product {
   id: number;
@@ -30,28 +29,10 @@ export function getFrontPage(limit: number) {
   if (!products) {
     throw new Error("Products not found");
   }
-    return products;
-  
+  return products;
 }
 
-export function getAllProducts(){
-  const products = db
-    .prepare(
-      `
-    SELECT id, name, slug, sku, brand, price, description,
-       image_url AS imageUrl,
-       publish_date AS publishDate
-        FROM products `,
-    )
-    .all() as Product[];
-
-  if (!products) {
-    throw new Error("Products not found");
-  }
-    return products;
-}
-
-export function getSimilarRandom(slug: string,limit: number) {
+export function getSimilarRandom(slug: string, limit: number) {
   const products = db
     .prepare(
       `
@@ -66,11 +47,10 @@ export function getSimilarRandom(slug: string,limit: number) {
     )
     .all(slug, limit) as Product[];
 
-   if (!products) {
+  if (!products) {
     throw new Error("Products not found");
   }
-    return products;
-  
+  return products;
 }
 export function getProductBySlug(slug: string) {
   const product = db
@@ -90,29 +70,35 @@ export function getProductBySlug(slug: string) {
   return product;
 }
 
-export function addTestData() {
-  const insert = db.prepare(`
-    INSERT INTO products (name, slug, sku, brand, price, description, image_url, publish_date)
-    VALUES (@name, @slug, @sku, @brand, @price, @description, @imageUrl, @publishDate)
-  `);
-
-  for (const product of testData) {
-    try {
-      insert.run(product);
-    } catch (error) {
-      return "Products has already been added for testing";
-    }
+export function rowCount(query?: string) {
+  if (query) {
+    const { total } = db
+      .prepare(`SELECT COUNT(*) as total FROM products WHERE name LIKE ?`)
+      .get(`%${query}%`) as { total: number };
+    return total;
   }
+  const { total } = db
+    .prepare(`SELECT COUNT(*) as total FROM products`)
+    .get() as { total: number };
 
-  return "Products added for testing";
+  return total;
 }
-export function addProduct(newProduct: Omit<Product, 'id'>): Product {
-  const insert = db.prepare(`
-    INSERT INTO products (name, slug, sku, brand, price, description, image_url, publish_date)
-    VALUES (@name, @slug, @sku, @brand, @price, @description, @imageUrl, @publishDate)
-  `);
 
-  const info = insert.run(newProduct);
+export function searchByName(query: string, limit: number, page: number) {
+  const offset = (page - 1) * limit;
+  const products = db
+    .prepare(
+      `
+    SELECT id, name, slug, sku, brand, price, description,
+       image_url AS imageUrl,
+       publish_date AS publishDate
+        FROM products
+    WHERE  name LIKE ?
+    ORDER BY id
+    LIMIT ? OFFSET ?`,
+    )
+    .all(`%${query}%`, limit, offset) as Product[] | undefined;
 
-  return { id: info.lastInsertRowid as number, ...newProduct };
+  return products;
 }
+

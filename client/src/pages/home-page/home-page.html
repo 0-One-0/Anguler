@@ -26,15 +26,7 @@
       <p>Loading...</p>
     } @else {
       @for (product of Products.value(); track product.slug) {
-        <app-preview-product
-          /* [publishDate]="product.publishDate"
-      [name]="product.name"
-      [brand]="product.brand"
-      [price]="product.price"
-      [imageUrl]="product.imageUrl"
-      [slug]="product.slug" */
-          [product]="product"
-        />
+        <app-preview-product [product]="product" />
       }
     }
   </div>

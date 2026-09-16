@@ -14,16 +14,16 @@ export const routes: Routes = [
     path: '',
     component: MainLayout,
     children: [
-      { path: '', component: HomePage },
-      { path: 'search', component: SearchPage },
-      { path: 'product/:slug', component: DetailPage },
-      { path: 'basket', component: CartPage },
-      { path: 'checkout', component: CheckoutPage },
+      { path: '', component: HomePage, title: 'OneFashion' },
+      { path: 'search', component: SearchPage, title: 'OneFashion' },
+      { path: 'products/:slug', component: DetailPage },
+      { path: 'basket', component: CartPage, title: 'Cart' },
+      { path: 'checkout', component: CheckoutPage, title: 'Checkout' },
     ],
   },
   { path: 'admin', component: AdminLayout,
     children: [
-      { path: 'products', component: AdminPage },
-      { path: 'products/new', component: AddProduct },
+      { path: 'products', component: AdminPage, title: 'Admin' },
+      { path: 'products/new', component: AddProduct, title: 'Admin' },
     ],}
 ];

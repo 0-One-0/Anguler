@@ -1,7 +1,7 @@
 <div class="flex flex-col max-w-fit justify-center items-center relative">
   <div class="relative flex w-fit">
     <img
-      [routerLink]="'/product/' + product().slug"
+      [routerLink]="'/products/' + product().slug"
       class="w-90  relative md:w-93 lg:w-100"
       [src]="product().imageUrl"
       alt=""
@@ -23,9 +23,9 @@
     } 
   </div>
 
-  <div class="flex relative justify-start border-box w-full p-2">
+  <div class="flex relative justify-start border-box min-h-25 w-full p-2">
     <div class="">
-      <p>{{ product().name }}</p>
+      <p class="flex box-border max-w-50">{{ product().name }}</p>
       <p>{{ product().brand }}</p>
     </div>
     <p class="absolute right-5">{{ product().price }}$</p>

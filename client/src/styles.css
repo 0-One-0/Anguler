@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
- 
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Each routed page is dropped in here as a flex item of the site's <main>.
+   Without this, a page whose content has a wide natural size (e.g. a
+   horizontal scroller) can force the page's own box wider than the screen
+   instead of just scrolling internally, which drags the whole site into
+   horizontal overflow. Scoped to .site-main only, so it never touches
+   admin-layout's own <main> (which uses a different sidebar+content layout). */
+main.site-main > * {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+

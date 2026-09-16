@@ -9,13 +9,6 @@ import { Product, ProductsService } from '../../services/products-service';
   styleUrl: './preview-product.css',
 })
 export class PreviewProduct {
-  // publishDate = input.required<string>();
-  // name = input.required<string>();
-  // brand = input.required<string>();
-  // price = input.required<number>();
-  // imageUrl = input.required<string>();
-  // slug = input.required<string>();
-
   private productsService = inject(ProductsService);
 
   product = input.required<Product>();
