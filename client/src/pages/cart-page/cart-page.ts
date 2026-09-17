@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Basket } from "../../components/basket/basket";
 import { RouterLink } from "@angular/router";
+import { BasketServices } from '../../services/basket-services';
 
 @Component({
   selector: 'app-cart-page',
@@ -9,9 +10,9 @@ import { RouterLink } from "@angular/router";
   styleUrl: './cart-page.css',
 })
 export class CartPage {
-  titel = signal("Cart");
+  private basketService = inject(BasketServices);
+  private items = this.basketService.getAll();
 
-  toCheckout(){
-    this.titel.set("Checkout");
-  }
+  itemCount = computed(() => this.items().length);
+  subtotal = computed(() => this.items().reduce((sum, item) => sum + item.price * item.quantity, 0));
 }

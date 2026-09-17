@@ -1,58 +1,82 @@
-<form class="flex flex-col gap-4 w-[100%] md:w-[100%] box-border ">
-  <h2 class="text-xl font-bold text-center">Customer details</h2>
+<form class="font-body flex flex-col gap-8 w-full box-border">
+  <div class="flex flex-col gap-4 border-t border-neutral-200 pt-4">
+    <h2 class="text-xs font-bold uppercase tracking-wide">Contact</h2>
 
-  <div class="flex flex-col gap-4 md:flex-row max-w-[810px]">
-    <div class="flex flex-col gap-1 md:w-1/2">
-      <label for="firstname">First name</label>
-      <input
-        id="firstname"
-        name="firstname"
-        type="text"
-        class="border border-black box-border h-8 px-2"
-      />
+    <div class="flex flex-col gap-4 md:flex-row">
+      <div class="flex flex-col gap-1 w-full">
+        <label for="firstname" class="text-xs uppercase tracking-wide text-neutral-500">First Name</label>
+        <input
+          id="firstname"
+          name="firstname"
+          type="text"
+          class="border border-neutral-300 rounded h-10 px-3 box-border"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1 w-full">
+        <label for="lastname" class="text-xs uppercase tracking-wide text-neutral-500">Last Name</label>
+        <input
+          id="lastname"
+          name="lastname"
+          type="text"
+          class="border border-neutral-300 rounded h-10 px-3 box-border"
+        />
+      </div>
     </div>
-
-    <div class="flex flex-col gap-1 md:w-1/2">
-      <label for="lastname">Last name</label>
-      <input
-        id="lastname"
-        name="lastname"
-        type="text"
-        class="border border-black box-border h-8 px-2"
-      />
-    </div>
-  </div>
-  <div class="flex flex-col gap-1 max-w-[810px]">
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" class="border border-black box-border h-8 px-2" />
-  </div>
-
-  <fieldset class="border border-black box-border flex flex-col gap-4 p-4">
-    <legend class="px-2">Address</legend>
 
     <div class="flex flex-col gap-1">
-      <label for="street">Street</label>
+      <label for="email" class="text-xs uppercase tracking-wide text-neutral-500">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="you@example.com"
+        class="border border-neutral-300 rounded h-10 px-3 box-border"
+      />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4 border-t border-neutral-200 pt-4">
+    <h2 class="text-xs font-bold uppercase tracking-wide">Shipping Address</h2>
+
+    <div class="flex flex-col gap-1">
+      <label for="street" class="text-xs uppercase tracking-wide text-neutral-500">Street</label>
       <input
         id="street"
         name="street"
         type="text"
-        class="border border-black box-border h-8 px-2"
+        placeholder="Street and number"
+        class="border border-neutral-300 rounded h-10 px-3 box-border"
       />
     </div>
 
-    <div class="flex flex-col gap-1 w-1/2">
-      <label for="zip">Postal code</label>
-      <input id="zip" name="zip" type="text" class="border border-black box-border h-8 px-2" />
-    </div>
+    <div class="flex gap-4">
+      <div class="flex flex-col gap-1 w-full">
+        <label for="city" class="text-xs uppercase tracking-wide text-neutral-500">City</label>
+        <input
+          id="city"
+          name="city"
+          type="text"
+          placeholder="City"
+          class="border border-neutral-300 rounded h-10 px-3 box-border"
+        />
+      </div>
 
-    <div class="flex flex-col gap-1">
-      <label for="city">City</label>
-      <input id="city" name="city" type="text" class="border border-black box-border h-8 px-2" />
+      <div class="flex flex-col gap-1 w-full">
+        <label for="zip" class="text-xs uppercase tracking-wide text-neutral-500">Postal Code</label>
+        <input
+          id="zip"
+          name="zip"
+          type="text"
+          placeholder="000 00"
+          class="border border-neutral-300 rounded h-10 px-3 box-border"
+        />
+      </div>
     </div>
-  </fieldset>
+  </div>
 
-  <label class="flex items-center gap-2">
-    <input type="checkbox" name="newsletter" class="border border-black box-border" />
+  <label class="flex items-center gap-2 text-sm">
+    <input type="checkbox" name="newsletter" class="border border-neutral-300" />
     I want to receive the newsletter
   </label>
 </form>

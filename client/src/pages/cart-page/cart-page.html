@@ -1,6 +1,31 @@
-<div class="flex flex-col items-center box-border w-full  gap-10">
-  <p class="text-3xl font-bold">Cart</p>
-  <app-basket />
+<div
+  class="flex flex-col w-full max-w-140 mx-auto gap-8 px-4 box-border md:max-w-200 md:flex-row md:items-start md:gap-6 lg:max-w-265 lg:gap-10"
+>
+  <div class="flex flex-col w-full gap-4 md:flex-1 md:min-w-0">
+    <h1 class="font-logo uppercase tracking-tight text-xl md:text-2xl">Shopping Bag ({{ itemCount() }})</h1>
+    <app-basket />
+  </div>
 
-  <button class="border text-white flex px-5 py-2 rounded-2xl bg-green-500 border-box" [routerLink]="'/checkout'">Checkout</button>
+  <div
+    class="font-body flex flex-col gap-4 w-full border border-neutral-200 rounded-lg p-5 box-border md:w-64 md:shrink-0 lg:w-80"
+  >
+    <h2 class="text-xs font-bold uppercase tracking-wide text-neutral-500">Order Summary</h2>
+
+    <div class="flex justify-between text-sm">
+      <span>Subtotal</span>
+      <span>${{ subtotal() }}</span>
+    </div>
+
+    <div class="flex justify-between text-base font-bold border-t border-neutral-200 pt-3">
+      <span>Total</span>
+      <span>${{ subtotal() }}</span>
+    </div>
+
+    <button
+      [routerLink]="'/checkout'"
+      class="bg-black text-white font-bold uppercase tracking-wide py-3 rounded-full"
+    >
+      Checkout
+    </button>
+  </div>
 </div>

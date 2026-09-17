@@ -3,34 +3,28 @@
 } @else if (results.error()) {
   <p>Something went wrong...</p>
 } @else {
-  <div class="flex flex-col gap-10 items-center w-full box-border">
-    <div class="flex gap-4 box-border w-full justify-start pl-4">
-      <p>Found {{ results.value()?.totalRows }} results... for {{ q() }}</p>
-    </div>
+  <div class="flex flex-col gap-6 items-center w-full box-border">
+    <h1 class="font-logo uppercase tracking-tight text-xl text-center md:text-2xl">
+      {{ results.value()?.totalRows }} Products Found
+    </h1>
 
     @if (pageNumbers()?.length > 1) {
-      <div class="flex w-full justify-center">
-        <div class="flex gap-2">
-          <button (click)="decrement()"><</button>
-          <div class="flex gap-2">
-            @for (num of pageNumbers(); track num) {
-              <div
-                class="flex border px-1 rounded cursor-default"
-                [class.bg-black]="num === page()"
-                [class.text-white]="num === page()"
-                (click)="setPage(num)"
-              >
-                {{ num }}
-              </div>
-            }
-          </div>
-
-          <button (click)="increment()">></button>
-        </div>
+      <div class="flex items-center gap-2">
+        <button (click)="decrement()" class="text-lg font-bold px-1" aria-label="Previous page">&lt;</button>
+        @for (num of pageNumbers(); track num) {
+          <button
+            (click)="setPage(num)"
+            class="flex items-center justify-center w-7 h-7 rounded-full text-sm font-bold"
+            [class.bg-black]="num === page()"
+            [class.text-white]="num === page()"
+          >
+            {{ num }}
+          </button>
+        }
+        <button (click)="increment()" class="text-lg font-bold px-1" aria-label="Next page">&gt;</button>
       </div>
     }
 
-    
     <div
       class="flex flex-col max-w-screen border-box w-full items-center gap-4 p-4 md:grid grid-cols-2 md:max-w-200 md:px-0 lg:grid-cols-4 lg:max-w-265"
     >
@@ -40,20 +34,19 @@
     </div>
 
     @if (pageNumbers()?.length > 1) {
-      <div class="flex w-full justify-center">
-        <div class="flex gap-2">
-          <button (click)="decrement()"><</button>
-          <div class="flex gap-2">
-            @for (num of pageNumbers(); track num) {
-              <div class="flex border px-1 rounded cursor-default"
-                [class.bg-black]="num === page()"
-                [class.text-white]="num === page()"
-                (click)="setPage(num)">{{ num }}</div>
-            }
-          </div>
-
-          <button (click)="increment()">></button>
-        </div>
+      <div class="flex items-center gap-2">
+        <button (click)="decrement()" class="text-lg font-bold px-1" aria-label="Previous page">&lt;</button>
+        @for (num of pageNumbers(); track num) {
+          <button
+            (click)="setPage(num)"
+            class="flex items-center justify-center w-7 h-7 rounded-full text-sm font-bold"
+            [class.bg-black]="num === page()"
+            [class.text-white]="num === page()"
+          >
+            {{ num }}
+          </button>
+        }
+        <button (click)="increment()" class="text-lg font-bold px-1" aria-label="Next page">&gt;</button>
       </div>
     }
   </div>

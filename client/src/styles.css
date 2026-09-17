@@ -19,3 +19,12 @@ main.site-main > * {
   min-width: 0;
 }
 
+.font-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+}
+
+.font-body {
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+

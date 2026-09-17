@@ -1,17 +1,65 @@
-<div class="w-100 gap-4  flex flex-col items-center border-box p-3 md:flex-row md:justify-start md:items-start md:w-full">
-  <img [src]="product().imageUrl" class="w-100 lg:w-150" alt="">
-  <div class="md:flex md:flex-col md:gap-15">
-  <div class=" flex flex-col gap-3  md:gap-4 ">
-    <p class="text-3xl font-semibold lg:text-7xl">{{ product().name }}</p>
-    <p class="text-gray-400 lg:text-2xl ">{{ product().brand }}</p>
-    <p class="max-w-100 lg:text-2xl">{{ product().description }}</p>
-    <div class="felx flex-col items-start w-full ">
-    <p class="lg:text-2xl">{{ product().price }}$</p>
+<div
+  class="w-full gap-4 flex flex-col items-center border-box p-3 md:flex-row md:items-start md:justify-center md:gap-10 md:max-w-200 lg:gap-15 lg:max-w-265"
+>
+  <div class="relative w-full max-w-100 md:max-w-none md:flex-1 lg:max-w-150">
+    @if (newItem()) {
+      <div
+        class="absolute top-2 left-2 z-10 bg-black text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded"
+      >
+        New
+      </div>
+    }
+    <img [src]="product().imageUrl" class="w-full aspect-3/4 object-cover rounded box-border" alt="" />
+  </div>
+
+  <div class="font-body flex flex-col gap-4 w-full max-w-100 md:max-w-90 lg:max-w-100">
+    <div class="flex flex-col gap-1">
+      <p class="text-xs uppercase tracking-wide text-neutral-500">{{ product().brand }}</p>
+      <p class="text-2xl font-bold uppercase lg:text-3xl">{{ product().name }}</p>
+      <p class="text-xl font-bold">${{ product().price }}</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="addToBasket()"
+        class="flex-1 bg-black text-white font-bold uppercase tracking-wide py-3 rounded-full"
+      >
+        Add to cart
+      </button>
+      <button
+        type="button"
+        aria-label="Wishlist"
+        class="flex items-center justify-center w-11 h-11 shrink-0 rounded-full border border-neutral-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.099 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="border-t border-neutral-200 pt-4">
+      <button
+        type="button"
+        (click)="toggleDetails()"
+        class="flex items-center justify-between w-full text-sm font-bold uppercase tracking-wide"
+      >
+        Details
+        <span class="text-lg leading-none">{{ detailsOpen() ? '−' : '+' }}</span>
+      </button>
+      @if (detailsOpen()) {
+        <p class="text-sm text-neutral-600 mt-3">{{ product().description }}</p>
+      }
     </div>
   </div>
-  
-    <button (click)="addToBasket()" class="bg-amber-100 p-2 w-50 lg:w-90 border border-black rounded-2xl" >Add to cart</button>
-  </div>
-  
 </div>
-

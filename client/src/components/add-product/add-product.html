@@ -1,82 +1,119 @@
-<div class="max-w-[90%] box-border w-[50rem] overflow-y-scroll h-[100dvh]">
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full max-w-md p-6 box-border">
-  <div class="flex flex-col gap-1">
-    <label for="name" class="font-semibold">Name</label>
-    <input id="name" formControlName="name" class="border p-1.5 rounded" />
-    @if (productForm.controls.name.invalid && productForm.controls.name.touched) {
-      <span class="text-red-600 text-sm">Name is required (max 25 chars).</span>
-    }
-  </div>
+<div class="w-full max-w-160 box-border min-w-0">
+  <h1 class="font-logo uppercase tracking-tight text-xl mb-6">Add Product</h1>
 
-  <div class="flex flex-col gap-1">
-    <label for="description" class="font-semibold">Description</label>
-    <textarea
-      id="description"
-      formControlName="description"
-      rows="5"
-      class="border p-1.5 rounded resize-none"
-    ></textarea>
-    @if (productForm.controls.description.invalid && productForm.controls.description.touched) {
-      <span class="text-red-600 text-sm">Description is required.</span>
-    }
-  </div>
-
-  <div class="flex flex-col gap-1">
-    <label for="imageUrl" class="font-semibold">Image</label>
-    <input id="imageUrl" type="url" formControlName="imageUrl" class="border p-1.5 rounded" />
-    @if (productForm.controls.imageUrl.invalid && productForm.controls.imageUrl.touched) {
-      <span class="text-red-600 text-sm">Image URL is required.</span>
-    }
-  </div>
-  <div>
-    <p>Image Preview:</p>
-<img class="w-30" [src]="productForm.value.imageUrl" alt="">
-<p>Make sure the image shows before adding</p>
-  </div>
-  
-
-  <div class="flex flex-col gap-1">
-    <label for="brand" class="font-semibold">Brand</label>
-    <input id="brand" formControlName="brand" class="border p-1.5 rounded" />
-    @if (productForm.controls.brand.invalid && productForm.controls.brand.touched) {
-      <span class="text-red-600 text-sm">Brand is required.</span>
-    }
-  </div>
-
-  <div class="flex flex-col gap-1">
-    <label for="sku" class="font-semibold">SKU</label>
-    <input id="sku" formControlName="sku" class="border p-1.5 rounded" />
-    @if (productForm.controls.sku.invalid && productForm.controls.sku.touched) {
-      @if (productForm.controls.sku.hasError('required')) {
-        <span class="text-red-600 text-sm">SKU is required.</span>
-      } @else if (productForm.controls.sku.hasError('pattern')) {
-        <span class="text-red-600 text-sm">Format: three letters + three digits (e.g. ABC123).</span>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="font-body flex flex-col gap-5 w-full box-border">
+    <div class="flex flex-col gap-1">
+      <label for="name" class="text-xs font-bold uppercase tracking-wide">Name</label>
+      <input
+        id="name"
+        formControlName="name"
+        placeholder="e.g. Tech Fleece Hoodie"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.name.invalid && productForm.controls.name.touched) {
+        <span class="text-red-600 text-sm">Name is required (max 25 chars).</span>
       }
-    }
-  </div>
+    </div>
 
-  <div class="flex flex-col gap-1">
-    <label for="price" class="font-semibold">Price</label>
-    <input id="price" type="number" step="0.01" formControlName="price" class="border p-1.5 rounded" />
-    @if (productForm.controls.price.invalid && productForm.controls.price.touched) {
-      @if (productForm.controls.price.hasError('required')) {
-        <span class="text-red-600 text-sm">Price is required.</span>
-      } @else if (productForm.controls.price.hasError('min')) {
-        <span class="text-red-600 text-sm">Price can't be negative.</span>
+    <div class="flex flex-col gap-1">
+      <label for="description" class="text-xs font-bold uppercase tracking-wide">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="4"
+        placeholder="Short product description"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 py-2 resize-none box-border w-full"
+      ></textarea>
+      @if (productForm.controls.description.invalid && productForm.controls.description.touched) {
+        <span class="text-red-600 text-sm">Description is required.</span>
       }
-    }
-  </div>
+    </div>
 
-  <div class="flex flex-col gap-1">
-    <label for="publishDate" class="font-semibold">Publish Date</label>
-    <input id="publishDate" type="date" formControlName="publishDate" class="border p-1.5 rounded" />
-    @if (productForm.controls.publishDate.invalid && productForm.controls.publishDate.touched) {
-      <span class="text-red-600 text-sm">Publish date is required.</span>
-    }
-  </div>
+    <div class="flex flex-col gap-1">
+      <label for="imageUrl" class="text-xs font-bold uppercase tracking-wide">Image</label>
+      <input
+        id="imageUrl"
+        type="url"
+        formControlName="imageUrl"
+        placeholder="https://..."
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.imageUrl.invalid && productForm.controls.imageUrl.touched) {
+        <span class="text-red-600 text-sm">Image URL is required.</span>
+      }
+      <p class="text-xs text-neutral-500 mt-1">Image Preview: Make sure the image shows before adding</p>
+      <div class="w-40 aspect-3/4 bg-neutral-100 border border-neutral-200 rounded overflow-hidden box-border">
+        <img class="w-full h-full object-cover" [src]="productForm.value.imageUrl" alt="Product photo preview" />
+      </div>
+    </div>
 
-  <button type="submit" class="border p-1.5 rounded self-start">Add</button>
-</form>
+    <div class="flex flex-col gap-1">
+      <label for="brand" class="text-xs font-bold uppercase tracking-wide">Brand</label>
+      <input
+        id="brand"
+        formControlName="brand"
+        placeholder="e.g. Nike"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.brand.invalid && productForm.controls.brand.touched) {
+        <span class="text-red-600 text-sm">Brand is required.</span>
+      }
+    </div>
 
+    <div class="flex flex-col gap-1">
+      <label for="sku" class="text-xs font-bold uppercase tracking-wide">SKU</label>
+      <input
+        id="sku"
+        formControlName="sku"
+        placeholder="e.g. NIK014"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.sku.invalid && productForm.controls.sku.touched) {
+        @if (productForm.controls.sku.hasError('required')) {
+          <span class="text-red-600 text-sm">SKU is required.</span>
+        } @else if (productForm.controls.sku.hasError('pattern')) {
+          <span class="text-red-600 text-sm">Format: three letters + three digits (e.g. ABC123).</span>
+        }
+      }
+    </div>
 
+    <div class="flex flex-col gap-1">
+      <label for="price" class="text-xs font-bold uppercase tracking-wide">Price</label>
+      <input
+        id="price"
+        type="number"
+        step="0.01"
+        formControlName="price"
+        placeholder="0"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.price.invalid && productForm.controls.price.touched) {
+        @if (productForm.controls.price.hasError('required')) {
+          <span class="text-red-600 text-sm">Price is required.</span>
+        } @else if (productForm.controls.price.hasError('min')) {
+          <span class="text-red-600 text-sm">Price can't be negative.</span>
+        }
+      }
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="publishDate" class="text-xs font-bold uppercase tracking-wide">Publish Date</label>
+      <input
+        id="publishDate"
+        type="date"
+        formControlName="publishDate"
+        class="bg-neutral-50 border border-neutral-200 rounded px-3 h-10 box-border w-full"
+      />
+      @if (productForm.controls.publishDate.invalid && productForm.controls.publishDate.touched) {
+        <span class="text-red-600 text-sm">Publish date is required.</span>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="bg-black text-white font-bold uppercase tracking-wide py-3 px-10 rounded-full self-start"
+    >
+      Add
+    </button>
+  </form>
 </div>

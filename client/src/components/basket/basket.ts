@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { BasketServices } from '../../services/basket-services';
+import { Component, inject } from '@angular/core';
+import { BasketItem, BasketServices } from '../../services/basket-services';
 
 @Component({
   selector: 'app-basket',
@@ -7,31 +7,23 @@ import { BasketServices } from '../../services/basket-services';
   templateUrl: './basket.html',
   styleUrl: './basket.css',
 })
-export class Basket implements OnInit {
+export class Basket {
   private basketService = inject(BasketServices);
 
-  amount = 10;
-
-  amountArray: number[] = [];
-
-  i = 0;
-
   items = this.basketService.getAll();
-  ngOnInit() {
-    console.log(this.items());
 
-    for (this.i = 1; this.i <= 10; this.i++) {
-      this.amountArray.push(this.i);
+  increment(item: BasketItem) {
+    this.basketService.updateQuantity(item.slug, item.quantity + 1);
+  }
+
+  decrement(item: BasketItem) {
+    if (item.quantity <= 1) {
+      return;
     }
+    this.basketService.updateQuantity(item.slug, item.quantity - 1);
+  }
 
-    console.log(this.amountArray)
-  }
-  updateQuantity( slug: string, quantity: string){
-    const parsedQuantity = Number(quantity);
-    this.basketService.updateQuantity(slug, parsedQuantity)
-  }
   deleteItem(slug: string) {
     this.basketService.remove(slug);
   }
-
 }

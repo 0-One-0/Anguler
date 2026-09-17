@@ -1,39 +1,35 @@
 
-<div class="relative w-full min-w-0 max-w-300 mx-auto box-border md:px-9">
-  <button
-    class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center bg-white border rounded-full w-8 h-8 shadow"
-    (click)="scrollPrev()"
-    aria-label="Previous"
-    type="button"
-  >
-    &lt;
-  </button>
+<div class="w-full flex flex-col items-center gap-6">
+  <h2 class="font-logo uppercase tracking-tight text-xl md:text-2xl">You Might Also Like</h2>
 
-  <div
-    #scroller
-    class="flex gap-2 w-full min-w-0 border-box overflow-x-scroll snap-x snap-mandatory pl-0.5 m-0 py-10 scrollbar-hide"
-  >
-    @for (product of products.value(); track product.slug) {
-      <div class="flex flex-col w-[calc((100%-1rem)/3)] shrink-0 snap-start p-2 border border-box bg-amber-50" >
-        <img [routerLink]="'/products/' + product.slug" class=" aspect-3/4 object-cover border-box" [src]="product.imageUrl" alt="" />
-        <div class="flex ">
-          <div>
-            <p>{{ product.name }}</p>
-            <p>{{ product.brand }}</p>
-          </div>
+  <div class="relative w-full min-w-0 max-w-300 mx-auto box-border md:px-9">
+    <button
+      class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center bg-white border rounded-full w-8 h-8 shadow"
+      (click)="scrollPrev()"
+      aria-label="Previous"
+      type="button"
+    >
+      &lt;
+    </button>
 
-          <p class="ml-auto">{{ product.price }}$</p>
+    <div
+      #scroller
+      class="flex gap-3 w-full min-w-0 border-box overflow-x-scroll snap-x snap-mandatory pl-0.5 m-0 py-3 scrollbar-hide"
+    >
+      @for (product of products.value(); track product.slug) {
+        <div class="w-[calc((100%-1.5rem)/3)] shrink-0 snap-start">
+          <app-preview-product [product]="product" />
         </div>
-      </div>
-    }
-  </div>
+      }
+    </div>
 
-  <button
-    class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center bg-white border rounded-full w-8 h-8 shadow"
-    (click)="scrollNext()"
-    aria-label="Next"
-    type="button"
-  >
-    &gt;
-  </button>
+    <button
+      class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center bg-white border rounded-full w-8 h-8 shadow"
+      (click)="scrollNext()"
+      aria-label="Next"
+      type="button"
+    >
+      &gt;
+    </button>
+  </div>
 </div>

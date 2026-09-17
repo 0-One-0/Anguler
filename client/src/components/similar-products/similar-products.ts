@@ -1,10 +1,10 @@
 import { Component, ElementRef, inject, input, viewChild } from '@angular/core';
 import { ProductsService } from '../../services/products-service';
-import { RouterLink } from "@angular/router";
+import { PreviewProduct } from '../preview-product/preview-product';
 
 @Component({
   selector: 'app-similar-products',
-  imports: [RouterLink],
+  imports: [PreviewProduct],
   templateUrl: './similar-products.html',
   styleUrl: './similar-products.css',
 })

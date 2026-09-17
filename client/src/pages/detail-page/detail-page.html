@@ -1,19 +1,23 @@
-<div class="flex flex-col w-full border-box items-center lg:items-start">
+<div class="flex flex-col w-full border-box items-center">
   @if (product.isLoading()) {
-   <p>Loading...</p>
-
-  } @else if ( product.error()) {
+    <p>Loading...</p>
+  } @else if (product.error()) {
     <p>Product not found.</p>
-
   } @else {
     @if (product.value(); as p) {
       <app-product-detail [product]="p" />
-    } 
+    }
   }
 </div>
 
 <div
   class="hidden md:flex md:flex-col md:items-center border-box md:w-full md:min-w-0 m-0 px-5 lg:w-full lg:flex"
 >
-  <app-similar-products class="w-full min-w-0" [slug]="slug()" />
+  @if (product.isLoading()) {
+    
+  } @else if (product.error()) {
+    
+  } @else {
+    <app-similar-products class="w-full min-w-0" [slug]="slug()" />
+  }
 </div>

@@ -1,33 +1,37 @@
-<div class="flex flex-col max-w-fit justify-center items-center relative">
-  <div class="relative flex w-fit">
+<div class="flex flex-col w-full border border-neutral-200 rounded-lg p-3 gap-3 box-border">
+  <div class="relative w-full">
+    @if (newItem()) {
+      <div class="absolute top-2 left-2 z-10 bg-black text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded">
+        New
+      </div>
+    }
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="absolute top-2 right-2 z-10 w-5 h-5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.099 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+      />
+    </svg>
     <img
       [routerLink]="'/products/' + product().slug"
-      class="w-90  relative md:w-93 lg:w-100"
+      class="w-full aspect-3/4 object-cover rounded box-border cursor-pointer"
       [src]="product().imageUrl"
       alt=""
     />
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      wight="30"
-      height="40"
-      fill="#000000"
-      viewBox="0 0 24 24"
-      class="m-0 p-0 absolute bottom-4 right-4"
-    >
-      <path
-        d="M11.29 20.66c.2.2.45.29.71.29s.51-.1.71-.29l7.5-7.5c2.35-2.35 2.35-6.05 0-8.41-2.3-2.28-5.85-2.35-8.21-.2-2.36-2.15-5.91-2.09-8.21.2-2.35 2.36-2.35 6.06 0 8.41zM5.21 6.16C6 5.38 7 4.99 8.01 4.99s2.01.39 2.79 1.17l.5.5c.39.39 1.02.39 1.41 0l.5-.5c1.56-1.56 4.02-1.56 5.59 0 1.56 1.57 1.56 4.02 0 5.58l-6.79 6.79-6.79-6.79a3.91 3.91 0 0 1 0-5.58Z"
-      ></path>
-    </svg>
-    @if (newItem()) {
-      <div class="text-white bg-black border-box py-1 px-2 rounded absolute top-5 left-4">News</div>
-    } 
   </div>
 
-  <div class="flex relative justify-start border-box min-h-25 w-full p-2">
-    <div class="">
-      <p class="flex box-border max-w-50">{{ product().name }}</p>
-      <p>{{ product().brand }}</p>
+  <div class="font-body flex items-start justify-between gap-2 box-border">
+    <div class="min-w-0">
+      <p class="font-semibold truncate">{{ product().name }}</p>
+      <p class="text-sm text-neutral-500">{{ product().brand }}</p>
     </div>
-    <p class="absolute right-5">{{ product().price }}$</p>
+    <p class="font-semibold shrink-0">${{ product().price }}</p>
   </div>
 </div>

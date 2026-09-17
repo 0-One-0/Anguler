@@ -4,6 +4,7 @@ import { Product } from './products-service';
 export interface BasketItem {
   slug: string;
   name: string;
+  brand: string;
   price: number;
   quantity: number;
 }
@@ -33,7 +34,7 @@ export class BasketServices {
     } else {
       this.save([
         ...this.items(),
-        { slug: product.slug, name: product.name, price: product.price, quantity: 1 },
+        { slug: product.slug, name: product.name, brand: product.brand, price: product.price, quantity: 1 },
       ]);
     }
   }
