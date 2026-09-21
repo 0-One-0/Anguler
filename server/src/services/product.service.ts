@@ -60,7 +60,8 @@ export function getProductBySlug(slug: string) {
        image_url AS imageUrl,
        publish_date AS publishDate
         FROM products
-    WHERE  slug = ?`,
+    WHERE  publish_date <= datetime('now')
+    AND  slug = ?`,
     )
     .get(slug) as Product | undefined;
 
@@ -73,7 +74,10 @@ export function getProductBySlug(slug: string) {
 export function rowCount(query?: string) {
   if (query) {
     const { total } = db
-      .prepare(`SELECT COUNT(*) as total FROM products WHERE name LIKE ?`)
+      .prepare(
+        `SELECT COUNT(*) as total FROM products WHERE  publish_date <= datetime('now')
+    AND name LIKE ?`,
+      )
       .get(`%${query}%`) as { total: number };
     return total;
   }
@@ -93,7 +97,8 @@ export function searchByName(query: string, limit: number, page: number) {
        image_url AS imageUrl,
        publish_date AS publishDate
         FROM products
-    WHERE  name LIKE ?
+    WHERE  publish_date <= datetime('now')
+    AND  name LIKE ?
     ORDER BY id
     LIMIT ? OFFSET ?`,
     )
@@ -101,4 +106,3 @@ export function searchByName(query: string, limit: number, page: number) {
 
   return products;
 }
-
