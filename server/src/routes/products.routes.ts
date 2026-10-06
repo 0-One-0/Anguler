@@ -31,7 +31,7 @@ router.get("/search", (req, res) => {
   }catch (error){
     res.status(409).json({error: (error as Error).message})
   }
-}); // → GET /api/products/search
+}); 
 router.get("/:slug", (req, res) => {
   try {
     const product = getProductBySlug(req.params.slug);
@@ -39,7 +39,7 @@ router.get("/:slug", (req, res) => {
   } catch (error) {
     res.status(404).json({ error: (error as Error).message });
   }
-}); // → GET /api/products/:slug
+}); 
 router.get("/:slug/similar", (req, res) => {
   try{
      const product = getSimilarRandom(req.params.slug, 6);
@@ -47,6 +47,6 @@ router.get("/:slug/similar", (req, res) => {
   }catch (error) {
     res.status(404).json({ error: (error as Error).message });
   }
-}); // → GET /api/products/:slug/similar
+}); 
 
 export default router;

@@ -26,7 +26,10 @@ export class SearchPage {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   });
 
+  
   constructor() {
+    //Creates an effect that subscribes to q (query) and lets the page reset to 1 
+    // when we update or change the search query.
     effect(() => {
       this.q();
       this.page.set(1);

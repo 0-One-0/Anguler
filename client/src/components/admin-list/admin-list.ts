@@ -11,6 +11,8 @@ export class AdminList {
   private productService = inject(ProductsService);
   page = signal(1);
   pageSize = signal(10);
+  
+  
 
   results = this.productService.getAllAdmin( this.page, this.pageSize);
 
@@ -45,6 +47,7 @@ export class AdminList {
       },
       error: (err) => {
         console.error('Failed to delete product:', err);
+        
       },
     });
   }

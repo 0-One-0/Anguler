@@ -15,11 +15,14 @@ export class MainLayout {
   items = this.basketService.getAll();
 
   amountItems = computed(() => this.items().reduce((total, item) => total + item.quantity, 0));
+
+  //We get a string and we make sure there is anyhing in it before we naviagte to the 
+  //search page
   onSearch(query: string) {
     if(!query){
       return
     }
-    console.log(query);
+    
     this.router.navigate(['/search'], { queryParams: { q: query } });
   }
 }

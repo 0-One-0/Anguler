@@ -1,4 +1,4 @@
-// Importera modulen "express"
+
 import express from "express";
 import productsRouter from './routes/products.routes';
 import adminRouter from './routes/admin.routes';

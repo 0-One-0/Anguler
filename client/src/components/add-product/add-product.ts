@@ -52,7 +52,7 @@ export class AddProduct {
       slug: this.slugify(this.productForm.value.name!),
     };
 
-    console.log(product);
+    
     this.productService.addProduct(product).subscribe({
       next: (created) => {
         console.log('Created:', created);
@@ -60,6 +60,7 @@ export class AddProduct {
       },
       error: (err) => {
         console.error('Failed to add product:', err);
+        window.alert("Something went wrong, make sure you are not adding existing product");
         // e.g. show an error message — this fires on your backend's 409 for duplicates
       },
     });
